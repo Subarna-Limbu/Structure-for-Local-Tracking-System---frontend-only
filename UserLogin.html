@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>User Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -195,57 +195,81 @@
 
         }
 
-        .form-title {
-            color: var(--secondary);
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 1.6rem;
-        }
+        /* User Registration Form Styles */
+.registration-form {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+.form-title {
+    color: var(--secondary);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--dark);
-            font-weight: 600;
-        }
+.form-group {
+    margin-bottom: 20px;
+}
 
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--dark);
+    font-weight: 600;
+}
 
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
 
-        .form-button {
-            display: block;
-            width: 100%;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.form-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
 
-        .form-button:hover {
-            background-color: #d86e6e;
-        }
+.form-button {
+    display: block;
+    width: 100%;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-button:hover {
+    background-color: #e55a2b;
+}
+
+.login-prompt {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color:#1a56db;
+    font-weight:700;
+}
+
+.register-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.register-link:hover {
+    color:#e66140;
+}
 
 
         /* Footer Styles */
@@ -607,44 +631,33 @@
     </header>
 
     <!-- Bus Tracking Section -->
-    <section class="bus-tracking">
-        <div class="bus-tracking-overlay">
-        <div class="container">
-            <div class="bus-content">
-                
-                <div class="bus-text">
-                    <h2>Real-Time Bus <span>Tracking in Nepal</span></h2>
-                    <p>Your reliable partner for safe and efficient travel.</p>
-                </div>
-                <div class="bus-form">
-                    <h3 class="form-title">Search Buses</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="route">Select your Route</label>
-                            <select id="route" name="route">
-                                <option value="">-- Select Route --</option>
-                                <option value="kathmandu-pokhara">Kathmandu - Pokhara</option>
-                                <option value="kathmandu-chitwan">Kathmandu - Chitwan</option>
-                                <option value="kathmandu-birgunj">Kathmandu - Birgunj</option>
-                                <option value="kathmandu-biratnagar">Kathmandu - Biratnagar</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="pickup">Pickup Point:</label>
-                            <input type="text" id="pickup" name="pickup" placeholder="Enter pickup location">
-                        </div>
-                        <div class="form-group">
-                            <label for="destination">Destination Point:</label>
-                            <input type="text" id="destination" name="destination" placeholder="Enter destination">
-                        </div>
-                        <button type="submit" class="form-button">Search Buses</button>
-                    </form>
+   <section class="bus-tracking">
+    <div class="container">
+        <div class="bus-content">
+            <div class="bus-text">
+                <h2>Real-Time Bus <span>Tracking in Nepal</span></h2>
+                <p>Your reliable partner for safe and efficient travel.</p>
+            </div>
+            <div class="registration-form">
+                <h3 class="form-title">User Login</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="form-button">Login</button>
+                </form>
+                <div class="login-prompt">
+                   Don't Have Account? <a href="#" class="register-link"><h3>Register here</h3></a>
                 </div>
             </div>
         </div>
-        </div>
-    </section>
-
+    </div>
+</section>
 
   
     <!-- Footer -->

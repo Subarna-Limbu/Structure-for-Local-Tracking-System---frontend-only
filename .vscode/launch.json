@@ -7,8 +7,9 @@
         {
             "type": "msedge",
             "request": "launch",
-            "name": "Open 3rdversionHomepage.html",
-            "file": "c:\\Users\\KaranPrerna\\Downloads\\Structure-for-Local-Tracking-System---frontend-only\\3rdversionHomepage.html"
+            "name": "Open DriverLogin.html",
+            "file": "c:\\Users\\KaranPrerna\\Downloads\\Structure-for-Local-Tracking-System---frontend-only\\DriverLogin.html",
         }
+        
     ]
 }
