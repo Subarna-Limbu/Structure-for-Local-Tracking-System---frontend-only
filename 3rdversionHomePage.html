@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Route Bus Tracking System</title>
+    <title>Trackon - GPS Tracking Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -35,25 +35,28 @@
         }
 
         /* Upper Header Styles */
-        .Upper-Header {
-            background-color: blue;
+        .upper-header {
+            background-color: var(--secondary);
             color: white;
-            text-align: center;
-            padding: 5px 0;
+            padding: 8px 0;
             font-size: 0.9rem;
-            position: sticky;
         }
-        .Upper-Header p {
-            margin: 0;
-        }
-        .Upper-Header .fa-phone {
-            margin-right: 8px;
-        }
-        .Upper-Header div {
+
+        .upper-header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
+        .upper-header p {
+            margin: 0;
+        }
+
+        .upper-header i {
+            margin-right: 5px;
+            color: var(--accent);
+        }
+
         /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
@@ -115,6 +118,96 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+        }
+
+        /* Bus Tracking Section */
+        .bus-tracking {
+            padding: 80px 0;
+            background: linear-gradient(rgba(26, 86, 219, 0.85), rgba(15, 46, 114, 0.85)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: white;
+        }
+
+        .bus-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .bus-text h2 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .bus-text h2 span {
+            display: block;
+        }
+
+        .bus-text p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .bus-form {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-title {
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-button {
+            display: block;
+            width: 100%;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-button:hover {
+            background-color: #e55a2b;
         }
 
         /* Hero Section */
@@ -381,6 +474,11 @@
 
         /* Responsive Styles */
         @media (max-width: 992px) {
+            .bus-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
             .about-content {
                 grid-template-columns: 1fr;
             }
@@ -391,6 +489,12 @@
         }
 
         @media (max-width: 768px) {
+            .upper-header-content {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            
             .header-content {
                 flex-direction: column;
                 text-align: center;
@@ -400,6 +504,14 @@
             nav ul {
                 flex-direction: column;
                 gap: 15px;
+            }
+            
+            .bus-text h2 {
+                font-size: 2.2rem;
+            }
+            
+            .bus-text p {
+                font-size: 1.1rem;
             }
             
             .hero h1 {
@@ -433,6 +545,14 @@
                 font-size: 1.5rem;
             }
             
+            .bus-tracking {
+                padding: 60px 0;
+            }
+            
+            .bus-text h2 {
+                font-size: 1.8rem;
+            }
+            
             .hero {
                 padding: 60px 0;
             }
@@ -456,31 +576,35 @@
     </style>
 </head>
 <body>
-    <div class="Upper-Header">
-        <!-- Upper Header-->
-         <div>
-            <p>Welcome to Trackon Nepal Pvt. Ltd. - Your Trusted GPS Tracking Solution Provider!
-                </p>
+    <!-- Upper Header -->
+    <div class="upper-header">
+        <div class="container">
+            <div class="upper-header-content">
+                <div>
+                    <p>Welcome to Portal!</p>
+                </div>
+                <div>
+                    <p><i class="fa solid fa-phone"></i> 9820754740, 9820754741</p>
+                </div>
+            </div>
         </div>
-         <div >
-            <p> <i class="fa solid fa-phone"></i> 9820754740, 9820754741 
-     </div>
     </div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-satellite-dish fa-2x"></i>
-                    <div class="logo-text">Local Route Bus Tracking System<span></span></div>
+                    <i class="fa-solid fa-bus fa-2x"></i>
+                    <div class="logo-text">Track<span>on</span></div>
                 </div>
                 <nav>
                     <ul>
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Feature</a></li>
-                        <li><a href="#">Q&A</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Solutions</a></li>
+                        <li><a href="#">About Us</a></li>
                         <li><a href="#">Contact</a></li>
-                        <li><a href="#">Login</a></li>
                     </ul>
                 </nav>
                 <button class="mobile-menu-btn">
@@ -490,7 +614,43 @@
         </div>
     </header>
 
+    <!-- Bus Tracking Section -->
+    <section class="bus-tracking">
+        <div class="container">
+            <div class="bus-content">
+                <div class="bus-text">
+                    <h2>Real-Time Bus <span>Tracking in Nepal</span></h2>
+                    <p>Save up to 20% annually on fuel with Trackon's Bus Tracking</p>
+                </div>
+                <div class="bus-form">
+                    <h3 class="form-title">Search Buses</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="route">Select your Route</label>
+                            <select id="route" name="route">
+                                <option value="">-- Select Route --</option>
+                                <option value="kathmandu-pokhara">Kathmandu - Pokhara</option>
+                                <option value="kathmandu-chitwan">Kathmandu - Chitwan</option>
+                                <option value="kathmandu-birgunj">Kathmandu - Birgunj</option>
+                                <option value="kathmandu-biratnagar">Kathmandu - Biratnagar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup">Pickup Point:</label>
+                            <input type="text" id="pickup" name="pickup" placeholder="Enter pickup location">
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">Destination Point:</label>
+                            <input type="text" id="destination" name="destination" placeholder="Enter destination">
+                        </div>
+                        <button type="submit" class="form-button">Search Buses</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
+  
     <!-- Products Section -->
     <section class="products" id="products">
         <div class="container">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Route Bus Tracking System</title>
+    <title>Trackon - GPS Tracking Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -35,25 +35,28 @@
         }
 
         /* Upper Header Styles */
-        .Upper-Header {
-            background-color: blue;
+        .upper-header {
+            background-color: var(--secondary);
             color: white;
-            text-align: center;
-            padding: 5px 0;
+            padding: 8px 0;
             font-size: 0.9rem;
-            position: sticky;
         }
-        .Upper-Header p {
-            margin: 0;
-        }
-        .Upper-Header .fa-phone {
-            margin-right: 8px;
-        }
-        .Upper-Header div {
+
+        .upper-header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
+        .upper-header p {
+            margin: 0;
+        }
+
+        .upper-header i {
+            margin-right: 5px;
+            color: var(--accent);
+        }
+
         /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
@@ -391,6 +394,12 @@
         }
 
         @media (max-width: 768px) {
+            .upper-header-content {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            
             .header-content {
                 flex-direction: column;
                 text-align: center;
@@ -456,31 +465,35 @@
     </style>
 </head>
 <body>
-    <div class="Upper-Header">
-        <!-- Upper Header-->
-         <div>
-            <p>Welcome to Trackon Nepal Pvt. Ltd. - Your Trusted GPS Tracking Solution Provider!
-                </p>
+    <!-- Upper Header -->
+    <div class="upper-header">
+        <div class="container">
+            <div class="upper-header-content">
+                <div>
+                    <p>Welcome to Trackon Nepal Pvt. Ltd. - Your Trusted GPS Tracking Solution Provider!</p>
+                </div>
+                <div>
+                    <p><i class="fa solid fa-phone"></i> 9820754740, 9820754741</p>
+                </div>
+            </div>
         </div>
-         <div >
-            <p> <i class="fa solid fa-phone"></i> 9820754740, 9820754741 
-     </div>
     </div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-satellite-dish fa-2x"></i>
-                    <div class="logo-text">Local Route Bus Tracking System<span></span></div>
+                    <div class="logo-text">Track<span>on</span></div>
                 </div>
                 <nav>
                     <ul>
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Feature</a></li>
-                        <li><a href="#">Q&A</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Solutions</a></li>
+                        <li><a href="#">About Us</a></li>
                         <li><a href="#">Contact</a></li>
-                        <li><a href="#">Login</a></li>
                     </ul>
                 </nav>
                 <button class="mobile-menu-btn">
@@ -490,6 +503,14 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Answer Your Security Needs</h1>
+            <p>Professional vehicle tracking and fleet management solutions in Nepal</p>
+            <a href="#products" class="cta-button">Explore Products</a>
+        </div>
+    </section>
 
     <!-- Products Section -->
     <section class="products" id="products">
@@ -594,38 +615,5 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle functionality
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            const nav = document.querySelector('nav ul');
-            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Responsive menu adjustment
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                document.querySelector('nav ul').style.display = 'flex';
-            } else {
-                document.querySelector('nav ul').style.display = 'none';
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
