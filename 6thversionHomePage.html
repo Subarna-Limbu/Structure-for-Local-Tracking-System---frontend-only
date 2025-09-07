@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trackon - Proper Background Shading</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a56db;
+            --secondary: #0f2e72;
+            --accent: #ff6b35;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main bus tracking container with background image */
+        .bus-tracking {
+            padding: 80px 0;
+            background: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: white;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark overlay for the entire container */
+        .bus-tracking::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+            z-index: 1;
+        }
+
+        /* Content container - positioned above the overlay */
+        .bus-tracking-content {
+            position: relative;
+            z-index: 2; /* Higher than the overlay */
+            padding: 0 20px;
+        }
+
+        /* Text content styles */
+        .bus-text {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .bus-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .bus-text p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Search box (not affected by darkening) */
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-title {
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-button {
+            display: block;
+            width: 100%;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-button:hover {
+            background-color: #e55a2b;
+        }
+
+        /* Instructions section */
+        .instructions {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .instructions h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .instructions p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .code-block {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            color: var(--dark);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .bus-tracking {
+                padding: 60px 0;
+            }
+            
+            .bus-text h2 {
+                font-size: 2.2rem;
+            }
+            
+            .bus-text p {
+                font-size: 1.2rem;
+            }
+            
+            .search-box {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bus-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .form-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin: 30px 0; color: var(--secondary);">Proper Background Shading Solution</h1>
+        
+        <!-- Bus tracking section with shaded background -->
+        <section class="bus-tracking">
+            <div class="bus-tracking-content">
+                <!-- Text content -->
+                <div class="bus-text">
+                    <h2>Real-Time Bus Tracking in Nepal</h2>
+                    <p>Save up to <span class="highlight">20% annually</span> on fuel with Trackon's Bus Tracking</p>
+                </div>
+                
+                <!-- Search box (not affected by darkening) -->
+                <div class="search-box">
+                    <h3 class="form-title">Search Buses</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="route">Select your Route</label>
+                            <select id="route" name="route">
+                                <option value="">-- Select Route --</option>
+                                <option value="kathmandu-pokhara">Kathmandu - Pokhara</option>
+                                <option value="kathmandu-chitwan">Kathmandu - Chitwan</option>
+                                <option value="kathmandu-birgunj">Kathmandu - Birgunj</option>
+                                <option value="kathmandu-biratnagar">Kathmandu - Biratnagar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup">Pickup Point:</label>
+                            <input type="text" id="pickup" name="pickup" placeholder="Enter pickup location">
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">Destination Point:</label>
+                            <input type="text" id="destination" name="destination" placeholder="Enter destination">
+                        </div>
+                        <button type="submit" class="form-button">Search Buses</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Instructions section -->
+        <div class="instructions">
+            <h2>How to Implement This Solution</h2>
+            <p>To shade the entire background container while keeping content clear, use the <code>::before</code> pseudo-element:</p>
+            
+            <div class="code-block">
+                <code>
+/* Main container with background image */
+.bus-tracking {
+    padding: 80px 0;
+    background: url('localbus.jpeg') center/cover;
+    color: white;
+    position: relative; /* Required for pseudo-element positioning */
+}
+
+/* Dark overlay for the entire container using ::before */
+.bus-tracking::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Adjust opacity as needed */
+    z-index: 1; /* Places overlay above background but below content */
+}
+
+/* Content container - positioned above the overlay */
+.bus-tracking-content {
+    position: relative;
+    z-index: 2; /* Higher than the overlay */
+}
+                </code>
+            </div>
+            
+            <p>To use your own image, replace the background URL:</p>
+            <div class="code-block">
+                <code>
+.bus-tracking {
+    background: url('localbus.jpeg') center/cover;
+}
+                </code>
+            </div>
+            
+            <p>Adjust the darkness by changing the opacity value:</p>
+            <div class="code-block">
+                <code>
+.bus-tracking::before {
+    background: rgba(0, 0, 0, 0.4); /* Lighter overlay */
+}
+
+.bus-tracking::before {
+    background: rgba(0, 0, 0, 0.7); /* Darker overlay */
+}
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for the content
+        document.addEventListener('DOMContentLoaded', function() {
+            const busText = document.querySelector('.bus-text');
+            const searchBox = document.querySelector('.search-box');
+            
+            busText.style.opacity = '0';
+            busText.style.transform = 'translateY(20px)';
+            busText.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            
+            searchBox.style.opacity = '0';
+            searchBox.style.transform = 'translateY(20px)';
+            searchBox.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            
+            setTimeout(() => {
+                busText.style.opacity = '1';
+                busText.style.transform = 'translateY(0)';
+            }, 300);
+            
+            setTimeout(() => {
+                searchBox.style.opacity = '1';
+                searchBox.style.transform = 'translateY(0)';
+            }, 600);
+        });
+    </script>
+</body>
+</html>

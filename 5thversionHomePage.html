@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trackon - Darkened Background</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a56db;
+            --secondary: #0f2e72;
+            --accent: #ff6b35;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Background container with darkened image */
+        .background-container {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover;
+            z-index: 1;
+        }
+
+        /* Dark overlay using multiple techniques */
+        .dark-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Black with 70% opacity */
+            z-index: 2;
+        }
+
+        /* Alternative darkening techniques (comment out others to try different effects) */
+        /*
+        .dark-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+        }
+        */
+
+        /* Content positioned above the darkened background */
+        .content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        /* Text content styles */
+        .text-content {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            max-width: 800px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .text-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .text-content p {
+            font-size: 1.4rem;
+            color: #f0f0f0;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Search box (not affected by darkening) */
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-title {
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-button {
+            display: block;
+            width: 100%;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-button:hover {
+            background-color: #e55a2b;
+        }
+
+        /* Instructions section */
+        .instructions {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .instructions h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .instructions p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .code-block {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            color: var(--dark);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .background-container {
+                height: auto;
+                min-height: 600px;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .text-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .text-content p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-box {
+                padding: 20px 15px;
+            }
+            
+            .text-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .form-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin: 30px 0; color: var(--secondary);">Darkened Background with Clear Content</h1>
+        
+        <!-- Background container with darkened image -->
+        <div class="background-container">
+            <!-- Background image -->
+            <div class="background-image"></div>
+            
+            <!-- Dark overlay -->
+            <div class="dark-overlay"></div>
+            
+            <!-- Content positioned above the darkened background -->
+            <div class="content">
+                <!-- Text content -->
+                <div class="text-content">
+                    <h2>Real-Time Bus Tracking in Nepal</h2>
+                    <p>Save up to <span class="highlight">20% annually</span> on fuel with Trackon's Bus Tracking</p>
+                </div>
+                
+                <!-- Search box (not affected by darkening) -->
+                <div class="search-box">
+                    <h3 class="form-title">Search Buses</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="route">Select your Route</label>
+                            <select id="route" name="route">
+                                <option value="">-- Select Route --</option>
+                                <option value="kathmandu-pokhara">Kathmandu - Pokhara</option>
+                                <option value="kathmandu-chitwan">Kathmandu - Chitwan</option>
+                                <option value="kathmandu-birgunj">Kathmandu - Birgunj</option>
+                                <option value="kathmandu-biratnagar">Kathmandu - Biratnagar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup">Pickup Point:</label>
+                            <input type="text" id="pickup" name="pickup" placeholder="Enter pickup location">
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">Destination Point:</label>
+                            <input type="text" id="destination" name="destination" placeholder="Enter destination">
+                        </div>
+                        <button type="submit" class="form-button">Search Buses</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Instructions section -->
+        <div class="instructions">
+            <h2>How It Works</h2>
+            <p>This implementation uses a semi-transparent black overlay to darken the background image while keeping the content completely clear:</p>
+            
+            <div class="code-block">
+                <code>
+/* HTML Structure */
+&lt;div class="background-container"&gt;
+    &lt;div class="background-image"&gt;&lt;/div&gt;      /* Background image */
+    &lt;div class="dark-overlay"&gt;&lt;/div&gt;            /* Dark overlay */
+    &lt;div class="content"&gt;                         /* Content container */
+        &lt;div class="text-content"&gt;&lt;/div&gt;        /* Text content */
+        &lt;div class="search-box"&gt;&lt;/div&gt;          /* Search box */
+    &lt;/div&gt;
+&lt;/div&gt;
+
+/* CSS for darkening effect */
+.dark-overlay {
+    background: rgba(0, 0, 0, 0.7); /* Black with 70% opacity */
+}
+
+/* Content positioned above */
+.content {
+    position: relative;
+    z-index: 3; /* Higher than background layers */
+}
+
+.text-content, .search-box {
+    /* No background property - remains clear */
+}
+                </code>
+            </div>
+            
+            <p>To use your own image, replace the background URL in the CSS with your image path:</p>
+            <div class="code-block">
+                <code>
+.background-image {
+    background: url('localbus.jpeg') center/cover;
+}
+                </code>
+            </div>
+            
+            <p>Adjust the darkness by changing the opacity value (0.7 in the example):</p>
+            <div class="code-block">
+                <code>
+.dark-overlay {
+    background: rgba(0, 0, 0, 0.5); /* Lighter - 50% opacity */
+}
+
+.dark-overlay {
+    background: rgba(0, 0, 0, 0.8); /* Darker - 80% opacity */
+}
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for the content
+        document.addEventListener('DOMContentLoaded', function() {
+            const textContent = document.querySelector('.text-content');
+            const searchBox = document.querySelector('.search-box');
+            
+            textContent.style.opacity = '0';
+            textContent.style.transform = 'translateY(20px)';
+            textContent.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            
+            searchBox.style.opacity = '0';
+            searchBox.style.transform = 'translateY(20px)';
+            searchBox.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            
+            setTimeout(() => {
+                textContent.style.opacity = '1';
+                textContent.style.transform = 'translateY(0)';
+            }, 300);
+            
+            setTimeout(() => {
+                searchBox.style.opacity = '1';
+                searchBox.style.transform = 'translateY(0)';
+            }, 600);
+        });
+    </script>
+</body>
+</html>
